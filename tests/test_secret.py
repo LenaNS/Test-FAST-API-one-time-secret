@@ -23,13 +23,10 @@ async def test_get_secret(ac: AsyncClient):
     )
     resp_data = response.json()
 
-    print("AAAAAAAAAAAAAAAAAAAAAA", resp_data["secret_key"])
-
     secret_key = resp_data["secret_key"]
     response = await ac.get(
         f"/secret/{secret_key}",
         params = secret_dataset["secret"]
     )
     
-    # print(response)
     assert response.status_code == 200

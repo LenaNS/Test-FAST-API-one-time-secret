@@ -1,5 +1,4 @@
 from src.database import session_local
-from src.schema import SSecretAdd
 from src.models import SecretsOrm
 from sqlalchemy import select, and_
 import hashlib

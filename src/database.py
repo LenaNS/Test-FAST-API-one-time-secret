@@ -21,12 +21,12 @@ engine = create_async_engine(URL_DATABASE)
 session_local = async_sessionmaker(engine, expire_on_commit=False)
 
 # Создание таблиц
-async def create_tables():
+async def create_tables() -> None:
     async with engine.begin() as conn:
         await conn.run_sync(Model.metadata.create_all)
         
 # Удаление таблиц
-async def delete_tables():
+async def delete_tables() -> None:
     async with engine.begin() as conn:
         await conn.run_sync(Model.metadata.drop_all)
 
