@@ -1,0 +1,38 @@
+# Определение версии Docker Compose и начало описания сервисов
+version: '3'
+
+services:
+  web:
+    # Сборка образа для сервиса из текущей директории
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Задание имени контейнера для сервиса django
+    container_name: fastapi-onetimesecret
+    # Задание команды, которую нужно запустить при запуске контейнера для сервиса django
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - .:/app
+    # Открытие порта на хостовой машине и перенаправление на порт в контейнере
+    ports:
+      - 8000:8000
+    # Зависимость от другого сервиса
+    depends_on:
+      - pgdb
+
+  pgdb:
+    # Использование готового образа postgres
+    image: postgres:16.2-alpine
+    # Задание переменных окружения для контейнера с postgres
+    env_file:
+      - .env
+    # Задание имени контейнера для сервиса pgdb
+    container_name: pgdb
+    # Связывание тома с директорией в контейнере для сохранения данных postgres
+    volumes:
+      - pgdbdata:/var/lib/postgresql/data/
+    expose:
+      - 5432
+
+volumes:
+  pgdbdata: null
