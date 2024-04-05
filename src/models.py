@@ -10,10 +10,15 @@ AVAILABLE_CHARS = ascii_letters + digits
 
 
 def secret_key_generator():
-        url = ''
+        """Генерирует secret_key
+
+        Returns:
+           str: возвращает секретный ключ
+        """
+        secret_key = ''
         for i in range(SHORT_URL_SIZE):
-             url += choice(AVAILABLE_CHARS)
-        return url
+             secret_key += choice(AVAILABLE_CHARS)
+        return secret_key
 
 
 class Model(DeclarativeBase):
