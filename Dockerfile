@@ -1,11 +1,10 @@
 FROM python:3.12-slim
 
-ARG NEXUS=nexus.svrw.oao.rzd
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-RUN apt-get update &&
+RUN apt-get update
 
 WORKDIR /app
 
