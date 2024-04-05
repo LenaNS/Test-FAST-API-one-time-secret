@@ -23,7 +23,7 @@ class SecretRepository:
             secret_phrase (str): секретная фраза
 
         Returns:
-            str: возвращает секретный ключ
+            str: секретный ключ
         """
         async with session_local() as session:
             secret_phrase = hashlib.pbkdf2_hmac(hash_name='sha256', password=secret_phrase.encode(), salt=SALT.encode(), iterations=100000).hex()
