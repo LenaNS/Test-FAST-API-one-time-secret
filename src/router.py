@@ -8,7 +8,7 @@ router = APIRouter(
 
 
 @router.post("/generate")
-async def get_secret(secret: str, secret_phrase: str) -> dict:
+async def create_secret(secret: str, secret_phrase: str) -> dict:
     """Принимает secret и secret_phrase и отдает secret_key по которому этот secret можно получить.
 
     Args:
